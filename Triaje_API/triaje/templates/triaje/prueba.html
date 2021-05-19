@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 50%;
+        }
+        
+        td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 4px;
+        }
+        
+        tr:nth-child(even) {
+        background-color: #9aec9a;
+        }
+    </style>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+    <h1 align="center">PACIENTE</h1>
+    <table align="center">
+        <tr>
+            <th>DNI</th>
+            <th>EDAD</th>
+            <th>PESO</th>
+            <th>ALTURA</th>
+        </tr>
+        <tr>
+            <td>{{paciente.dni}}</td>
+            <td>{{paciente.edad}}</td>
+            <td>{{paciente.peso}}</td>
+            <td>{{paciente.altura}}</td>
+        </tr>
+    </table>
+    <br>
+
+    <h1 align="center">PATOLOGIAS</h1>
+    <table align="center">
+        <tr>
+            <th>Nombre</th>
+            <th>Nombre</th>
+        </tr>
+    {% for patologia in patologias%}
+        <tr>
+            <td>{{patologia.nombre}}</td>
+            <td>{{patologia.grado}}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    <br>
+    <h1 align="center">PACIENTE</h1>
+    <form class="form-signin" action="{% url 'sintomas' %}" method="post" id="id_sint">{% csrf_token %}
+    <table align="center">
+        <tr>
+            <th>DNI</th>
+            <th>EDAD</th>
+            <th>PESO</th>
+            <th>ALTURA</th>
+        </tr>
+        <tr>
+            <td>{{paciente.dni}}</td>
+            <td>{{paciente.edad}}</td>
+            <td>{{paciente.peso}}</td>
+            <td>{{paciente.altura}}</td>
+        </tr>
+    </table>
+    <br>
+
+    <h1 align="center">SINTOMAS</h1>
+    <table align="center">
+        <tr>
+            <th>Nombre</th>
+        </tr>
+    {% for sintoma in sintomas %}
+        <tr>
+            <td><input type="checkbox" value="{{ sintoma.id }}" name= "{{ sintoma.nombre }}">{{sintoma.nombre}}{{sintoma.dato_adicional}}</td>
+    {% endfor %}
+    </tr>
+    </table>
+    <button type="submit" name ="dni" value="{{ paciente.dni }}"> Continuar </button>
+</table>
+</body>
+</html>
