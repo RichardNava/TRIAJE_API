@@ -1,147 +1,155 @@
-// Questions Array
-const questions = [
-    { question: 'Enter Your First Name' },
-    { question: 'Enter Your Last Name' },
-    { question: 'Enter Your Email', pattern: /\S+@\S+\.\S+/ },
-    { question: 'Create A Password', type: 'password' }
-    ];
+var $ = jQuery.noConflict();
 
-    // Transition Times
-const shakeTime = 100; // Shake Transition Time
-const switchTime = 200; // Transition Between Questions
+jQuery(document).ready(function($) {
 
-    // Init Position At First Question
-let position = 0;
+	"use strict";
 
-    // Init DOM Elements
-const formBox = document.querySelector('#form-box');
-const nextBtn = document.querySelector('#next-btn');
-const prevBtn = document.querySelector('#prev-btn');
-const inputGroup = document.querySelector('#input-group');
-const inputField = document.querySelector('#input-field');
-const inputLabel = document.querySelector('#input-label');
-const inputProgress = document.querySelector('#input-progress');
-const progress = document.querySelector('#progress-bar');
+	[].slice.call( document.querySelectorAll( 'select.cs-select' ) ).forEach( function(el) {
+		new SelectFx(el);
+	});
 
-    // EVENTS
+	jQuery('.selectpicker').selectpicker;
 
-    // Get Question On DOM Load
-document.addEventListener('DOMContentLoaded', getQuestion);
 
-    // Next Button Click
-nextBtn.addEventListener('click', validate);
+	
 
-    // Input Field Enter Click
-inputField.addEventListener('keyup', e => {
-if (e.keyCode == 13) {
-        validate();
-    }
-    });
+	$('.search-trigger').on('click', function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		$('.search-trigger').parent('.header-left').addClass('open');
+	});
 
-    // FUNCTIONS
+	$('.search-close').on('click', function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		$('.search-trigger').parent('.header-left').removeClass('open');
+	});
 
-// Get Question From Array & Add To Markup
-function getQuestion() {
-// Get Current Question
-inputLabel.innerHTML = questions[position].question;
-// Get Current Type
-inputField.type = questions[position].type || 'text';
-// Get Current Answer
-inputField.value = questions[position].answer || '';
-// Focus On Element
-inputField.focus();
+	$('.equal-height').matchHeight({
+		property: 'max-height'
+	});
 
-// Set Progress Bar Width - Variable to the questions length
-progress.style.width = (position * 100) / questions.length + '%';
+	// var chartsheight = $('.flotRealtime2').height();
+	// $('.traffic-chart').css('height', chartsheight-122);
 
-// Add User Icon OR Back Arrow Depending On Question
-prevBtn.className = position ? 'fas fa-arrow-left' : 'fas fa-user';
 
-showQuestion();
-    }
+	// Counter Number
+	$('.count').each(function () {
+		$(this).prop('Counter',0).animate({
+			Counter: $(this).text()
+		}, {
+			duration: 3000,
+			easing: 'swing',
+			step: function (now) {
+				$(this).text(Math.ceil(now));
+			}
+		});
+	});
 
-    // Display Question To User
-    function showQuestion() {
-    inputGroup.style.opacity = 1;
-    inputProgress.style.transition = '';
-    inputProgress.style.width = '100%';
-    }
 
-    // Hide Question From User
-    function hideQuestion() {
-    inputGroup.style.opacity = 0;
-    inputLabel.style.marginLeft = 0;
-    inputProgress.style.width = 0;
-    inputProgress.style.transition = 'none';
-    inputGroup.style.border = null;
-    }
+	 
+	 
+	// Menu Trigger
+	$('#menuToggle').on('click', function(event) {
+		var windowWidth = $(window).width();   		 
+		if (windowWidth<1010) { 
+			$('body').removeClass('open'); 
+			if (windowWidth<760){ 
+				$('#left-panel').slideToggle(); 
+			} else {
+				$('#left-panel').toggleClass('open-menu');  
+			} 
+		} else {
+			$('body').toggleClass('open');
+			$('#left-panel').removeClass('open-menu');  
+		} 
+			 
+	}); 
 
-    // Transform To Create Shake Motion
-    function transform(x, y) {
-    formBox.style.transform = `translate(${x}px, ${y}px)`;
-    }
+	 
+	$(".menu-item-has-children.dropdown").each(function() {
+		$(this).on('click', function() {
+			var $temp_text = $(this).children('.dropdown-toggle').html();
+			$(this).children('.sub-menu').prepend('<li class="subtitle">' + $temp_text + '</li>'); 
+		});
+	});
 
-  // Validate Field
-function validate() {
-// Make Sure Pattern Matches If There Is One
-if (!inputField.value.match(questions[position].pattern || /.+/)) {
-    inputFail();
-} else {
-    inputPass();
+
+	// Load Resize 
+	$(window).on("load resize", function(event) { 
+		var windowWidth = $(window).width();  		 
+		if (windowWidth<1010) {
+			$('body').addClass('small-device'); 
+		} else {
+			$('body').removeClass('small-device');  
+		} 
+		
+	});
+
+ 
+});
+function abrir_modal_edicion(url) {
+	$('#edicion').load(url, function () {
+		$(this).modal('show');
+	});
 }
+function abrir_modal_creacion(url) {
+	$('#creacion').load(url, function () {
+		$(this).modal('show');
+	});
+}
+function abrir_modal_eliminacion(url) {
+	$('#eliminacion').load(url, function () {
+		$(this).modal('show');
+	});
+}
+function cerrar_modal_creacion(){
+	$('#creacion').modal('hide');
 }
 
-  // Field Input Fail
-function inputFail() {
-    formBox.className = 'error';
-    // Repeat Shake Motion -  Set i to number of shakes
-    for (let i = 0; i < 6; i++) {
-      setTimeout(transform, shakeTime * i, ((i % 2) * 2 - 1) * 20, 0);
-      setTimeout(transform, shakeTime * 6, 0, 0);
-        inputField.focus();
-    }
-    }
+function cerrar_modal_edicion() {
+	$('#edicion').modal('hide');
+}
+function cerrar_modal_eliminacion() {
+	$('#eliminacion').modal('hide');
+}
+function activarBoton(){
+	if($('#boton_creacion').prop('disabled')){
+		$('#boton_creacion').prop('disabled',false);
+	}else{
+		$('#boton_creacion').prop('disabled', true);
+	}
+}
 
-  // Field Input Passed
-  function inputPass() {
-    formBox.className = '';
-    setTimeout(transform, shakeTime * 0, 0, 10);
-    setTimeout(transform, shakeTime * 1, 0, 0);
-  
-    // Store Answer In Array
-    questions[position].answer = inputField.value;
-  
-    // Increment Position
-    position++;
-  
-    // If New Question, Hide Current and Get Next
-    if (questions[position]) {
-      hideQuestion();
-      getQuestion();
-    } else {
-      // Remove If No More Questions
-      hideQuestion();
-      formBox.className = 'close';
-      progress.style.width = '100%';
-  
-      // Form Complete
-      formComplete();
-    }
-  }
-  
-  // All Fields Complete - Show h1 end
-  function formComplete() {
-    const h1 = document.createElement('h1');
-    h1.classList.add('end');
-    h1.appendChild(
-      document.createTextNode(
-        `Thanks ${
-          questions[0].answer
-        } You are registered and will get an email shortly`
-      )
-    );
-    setTimeout(() => {
-      formBox.parentElement.appendChild(h1);
-      setTimeout(() => (h1.style.opacity = 1), 50);
-    }, 1000);
-  }
+function mostrarErroresCreacion(errores){
+	$('#errores').html("");
+	let error = "";
+	for(let item in errores.responseJSON.error){
+		error += '<div class = "alert alert-danger" <strong>' + errores.responseJSON.error[item] + '</strong></div>';
+	}
+	$('#errores').append(error);
+}
+function mostrarErroresEdicion(errores) {
+	$('#erroresEdicion').html("");
+	let error = "";
+	for (let item in errores.responseJSON.error) {
+		error += '<div class = "alert alert-danger" <strong>' + errores.responseJSON.error[item] + '</strong></div>';
+	}
+	$('#erroresEdicion').append(error);
+}
+
+function notificacionError(mensaje){
+	Swal.fire({
+		title: 'Error!',
+		text: mensaje,
+		icon: 'error'
+	})
+}
+
+function notificacionSuccess(mensaje) {
+	Swal.fire({
+		title: 'Buen Trabajo!',
+		text: mensaje,
+		icon: 'success'
+	})
+}

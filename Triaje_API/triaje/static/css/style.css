@@ -1,7 +1,7 @@
-div{
-    width: 50%;
-    padding: 1%;
-}
+/* div{
+    width: 1px;
+    padding: 1px;
+} */
 /* p{
     color: #258320;
 } */
@@ -39,7 +39,21 @@ div{
 }
 h1,h2,h3,h4{
     /* CON ESTA PROPIEDAD SE ESTABLECE UNA LISTA DE FUENTES O FAMILIA DE FUENTES, CON UN ORDEN DE PRIORIDAD, PARA UTILIZAR EN UN ELEMENTO SELECCIONADO*/
-    font-family: 'Lobster',cursive;
+    font-family: "Open Sans", sans-serif;
+    margin: 10px;
+    color: honeydew;
+    text-shadow: 2px 2px 3px black;
+    text-align: center;
+}
+
+#navbar {
+    margin-bottom: 5%;
+}
+
+.card {
+    margin-left:70px;
+    margin-right:70px;
+    margin-top: 20%;
 }
 .date {
     /* CON ESTA PROPIEDAD SE ESTABLECE LA DECORACIÓN QUE SE APLICA AL TEXTO DE UN ELEMENTO A NIVEL DE SUBRAYADO */
@@ -71,3 +85,8 @@ h1,h2,h3,h4{
     /* CON ESTA PROPIEDAD SE ESTABLECE UN COLOR DETERMINADO PARA UN ELEMENTO */
     color: black;
 }
+
+body{
+    background-image: url("../img/backgroundImg.jpg");
+} 
+
