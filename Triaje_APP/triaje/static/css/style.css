@@ -1,0 +1,229 @@
+.page-header{
+    background-color: #C25100;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+}
+.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active{
+    color: #ffffff;
+    font-size: 36pt;
+    text-decoration: none;
+}
+
+.table-success{
+    vertical-align: middle;
+}
+
+.content{
+    margin-left: 40px;
+}
+h1,h2,h3,h4{
+    font-family: "Open Sans", sans-serif;
+    margin: 10px;
+    color: honeydew;
+    text-shadow: 2px 2px 3px black;
+    text-align: center;
+}
+
+#main {
+    margin-bottom: 50%;
+}
+
+#navbar {
+    margin-bottom: 5%;
+}
+
+.card {
+    margin-left:70px;
+    margin-right:70px;
+}
+.date {
+    color: #828282;
+}
+.save {
+    float: right;
+}
+.post-form textarea, .post-form input {
+    width: 100%; 
+}
+.top-menu, .top-menu:hover, .top-menu:visited {
+    color: #ffffff;
+    float: right;
+    font-size: 26pt;
+    margin-right: 20px;
+}
+.post {
+    margin-bottom: 70px;
+}
+.post h2 a, .post h2 a:visited{
+    color: black;
+}
+
+body{
+    background-image: url("../img/backgroundImg.jpg");
+} 
+
+.icon-section {
+    margin: 0 0 3em;
+    clear: both;
+    overflow: hidden; }
+
+.icon-container {
+width: 240px;
+padding: .7em 0;
+float: left;
+position: relative;
+text-align: left; }
+
+.icon-container [class^="ti-"],
+.icon-container [class*=" ti-"] {
+color: #000;
+position: absolute;
+margin-top: 3px;
+-webkit-transition: .3s;
+transition: .3s; }
+
+.icon-container:hover [class^="ti-"],
+.icon-container:hover [class*=" ti-"] {
+font-size: 2.2em;
+margin-top: -5px; }
+
+.icon-container:hover .icon-name {
+color: #000; }
+
+.icon-name {
+color: #aaa;
+margin-left: 35px;
+font-size: 14px;
+-webkit-transition: .3s;
+transition: .3s; }
+
+.icon-container:hover .icon-name {
+margin-left: 45px; }
+
+.fontawesome-icon-list .page-header {
+border-bottom: 1px solid #C9CDD7;
+padding-bottom: 9px;
+margin: 30px 0px 27px 0px; }
+.fontawesome-icon-list h2 {
+margin-top: 0;
+font-size: 20px;
+font-weight: 300; }
+.fontawesome-icon-list i {
+font-style: 16px;
+padding-right: 10px; }
+
+.social-box i {
+line-height: 110px; }
+.social-box ul {
+display: inline-block;
+margin: 7px 0 0;
+padding: 10px;
+width: 100%; }
+.social-box ul li {
+    color: #949CA0;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 0 10px 0 0;
+    text-align: right; }
+    .social-box ul li:last-child {
+    padding-left: 10px;
+    padding-right: 0;
+    text-align: left; }
+    .social-box ul li span {
+    font-size: 14px; }
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 15px; }
+
+.login-logo span {
+    color: #ffffff;
+    font-size: 24px; }
+
+.login-content {
+    max-width: 540px;
+    margin: 8vh auto; }
+
+.login-form {
+    background: #ffffff;
+    padding: 30px 30px 20px;
+    border-radius: 2px; }
+
+.login-form h4 {
+    color: #878787;
+    text-align: center;
+    margin-bottom: 50px; }
+
+.login-form .checkbox {
+    color: #878787; }
+
+.login-form .checkbox label {
+    text-transform: none; }
+
+.login-form .btn {
+    width: 100%;
+    text-transform: uppercase;
+    font-size: 14px;
+    padding: 15px;
+    border: 0px; }
+
+.login-form label {
+    color: #878787;
+    text-transform: uppercase; }
+
+.login-form label a {
+    color: #ff2e44; }
+
+.social-login-content {
+    margin: 0px -30px;
+    border-top: 1px solid #e7e7e7;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 30px 0px;
+    background: #fcfcfc; }
+
+.social-button {
+    padding: 0 30px; }
+
+.social-button .facebook {
+    background: #3b5998;
+    color: #fff; }
+    .social-button .facebook:hover {
+    background: #344e86; }
+
+.social-button .twitter {
+    background: #00aced;
+    color: #fff; }
+    .social-button .twitter:hover {
+    background: #0099d4; }
+
+.social-button i {
+    padding: 19px; }
+
+.register-link a {
+    color: #ff2e44; }
+
+.cpu-load {
+    width: 100%;
+    height: 272px;
+    font-size: 14px;
+    line-height: 1.2em; }
+
+.cpu-load-data-content {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 40px; }
+
+.cpu-load-data {
+    margin-bottom: 30px; }
+
+.cpu-load-data li {
+    display: inline-block;
+    width: 32.5%;
+    text-align: center;
+    border-right: 1px solid #e7e7e7; }
+
+.cpu-load-data li:last-child {
+    border-right: 0px; }
+
+.nestable-cart {
+    overflow: hidden; }

@@ -1,0 +1,30 @@
+{% extends 'triaje/index.html' %}
+{%load static%}
+{% block import_js %}
+<script src="{% static '/js/clinic_finder.js' %}"></script>
+{% endblock import_js %}
+{% block titulo %}
+Triaje App - Listado Hospitales
+{% endblock titulo %}
+{% block body %}
+<form class="form-signin" action="{% url 'clinic_details' %}" method="post" id="id_detail">
+    {% csrf_token %}
+    <input type="text" name="lati" id="lati" style="display: none;"/>
+    <input type="text" name="long" id="long" style="display: none;"/>
+    <main class="container" id="main">
+        <ul class = "list-group">
+            {% for hosp in hospitals%}
+            <li class="list-group-item list-group-item-success">
+                <strong>Número de registro:</strong> {{hosp.nro_registro}} 
+                <strong>Dirección:</strong> {{hosp.direccion_ubicacion}} {{hosp.direccion_vial_numero}}
+                <strong>Código Postal:</strong> {{hosp.codigo_postal}} 
+                <div class = "d-flex justify-content-end">
+                    <button class="btn btn-success" type="submit" name ="nro_registro" value="{{hosp.nro_registro}}">Ver detalle</button>
+                </div>    
+                <strong>Dependencia:</strong> {{hosp.dependecia}}
+            </li>
+            {%endfor%}
+            </form>
+        </ul>
+    </main>
+{% endblock body %}

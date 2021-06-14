@@ -1,0 +1,45 @@
+{% extends 'triaje/index.html' %}
+{%load static%}
+{% block import_js %}
+<script src="{% static '/js/dea_finder.js' %}"></script>
+{% endblock import_js %}
+{% block titulo %}
+Triaje App - Top {{range_dea}} DEA
+{% endblock titulo %}
+{% block body %}
+    <form class="form-signin" action="{% url 'dea_details' %}" method="post" id="id_detail">
+        {% csrf_token %}
+        <input type="text" name="lat" id="lat" style="display: none;"/>
+        <input type="text" name="lng" id="lng" style="display: none;"/>
+    <div class="container">
+        <div class="col-12">
+            <div class="row">
+                <table class='table table-dark'>
+                    <tr>
+                        <th scope='col'>DETALLE</th>
+                        <th scope='col'>NOMBRE</th>
+                        <th scope='col'>DIRECCIÓN</th>
+                        <th scope='col'>HORARIO</th>
+                        <th scope='col'>LOCALIZACIÓN</th>
+                    </tr>
+                    {% for num in for_range %}
+                    <tr>
+                        {% load indice %}
+                        {% with dea=deas|indice:num %}
+                        <td class="table-success" ><button class="btn btn-success" type="submit" name ="codigo_dea" value="{{ dea.codigo_dea }}">Ver Detalle</button></td>
+                        <td class="table-success" >{{dea.direccion_ubicacion}}</td>
+                        <td class="table-success" >{{dea.direccion_via_nombre}} {{dea.direccion_portal_numero}} </td>
+                        {%if dea.horario_acceso != "" %}
+                        <td class="table-success" >{{dea.horario_acceso}}</td> 
+                        {% else %}
+                        <td class="table-success" >No disponible</td> 
+                        {%endif%}
+                        {% endwith %} 
+                        <td class="table-success" ><a target="_blank" href="{{urls|indice:num}}" class="btn btn-success">Ver en Maps</a></td>                            
+                        {% endfor %}
+                </tr>
+            </div>
+        </div>
+    </div>
+    </form>
+{% endblock body %}

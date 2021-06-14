@@ -1,0 +1,24 @@
+{% extends 'triaje/index.html' %}
+{%load static%}
+{% block titulo %}
+Triaje App - Detalle DEA
+{% endblock titulo %}
+{% block body %}
+    <main class="container" id="main">
+    <div class = "d-flex justify-content-center">
+        <div class="card" style="width: 18rem">
+            {%load static%}
+            <img src="{% static '/img/dea.svg'%}" class="card-img-top" alt="..." />
+            <div class="card-body">
+                <p class="card-title"><strong>Nombre: </strong>{{dea.direccion_ubicacion}}</p>
+                <p class="card-text"><strong>Horario: </strong>{%if dea.horario_acceso != ""%}{{dea.horario_acceso}}{% else %}No disponible</p>{%endif%}
+                <p class="card-text"><strong>Distancia: </strong>{{distance}} metros</p>
+                <p class="card-text"><strong>Código: </strong>{{dea.codigo_dea}}</p>
+                <div class = "d-flex justify-content-center">
+                    <a target="_blank" href="{{url}}" class="btn btn-success">Ver en Maps</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>    
+{% endblock body %}

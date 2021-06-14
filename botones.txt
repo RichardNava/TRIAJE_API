@@ -1,5 +1,0 @@
-botones - 
-button:{
-position: fixed;
-}
-#id{}

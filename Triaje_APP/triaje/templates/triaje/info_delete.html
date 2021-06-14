@@ -1,0 +1,25 @@
+{% extends 'triaje/index.html' %}
+{%load static%}
+{% block titulo %}
+Triaje App - Eliminar Informe
+{% endblock titulo %}
+{% block body %}
+<form class="form-signin" action="{% url 'info_delete' informe.id %}" method="post">
+    {% csrf_token %}
+    <div class = "d-flex justify-content-center">
+        <div class="shadow-lg p-3 mb-5 bg-warning rounded">
+            <h1>¿SEGURO QUE DESEA ELIMINAR EL INFORME {{informe.id}}?</h1>
+            <h2>Una vez eliminado, el informe no se podrá recuperar.</h2>
+            <br><br><br>
+            <div class = "d-grid gap-2 col-12 mx-auto">
+                <div class="d-grid gap-2 col-6 mx-auto justify-content-left">
+                    <button class="btn btn-danger" type="submit" name ="id_del" value="{{informe.id}}">Eliminar</button>
+                </div>
+                <div class="d-grid gap-2 col-6 mx-auto ">
+                    <a href= "{% url 'info_list'%}" class="btn btn-success">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </main>
+{% endblock body %}

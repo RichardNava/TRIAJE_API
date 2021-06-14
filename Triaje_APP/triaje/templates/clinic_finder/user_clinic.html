@@ -1,0 +1,42 @@
+{% extends 'triaje/index.html' %}
+{%load static%}
+{% block import_js %}
+<script src="{% static '/js/clinic_finder.js' %}"></script>
+{% endblock import_js %}
+{% block titulo %}
+Triaje App - Buscador Hospitales
+{% endblock titulo %}
+{% block body %}
+<main class="container" id="main">
+    <div class = "d-flex justify-content-center">
+        <form action="{% url 'clinic_finder' %}" method="POST">
+        <div class="card" style="width: 18rem">
+            {% csrf_token %}
+            <input type="text" name="lat" id="lat" style="display: none;"/>
+            <input type="text" name="lng" id="lng" style="display: none;"/>
+            {%load static%}
+            <img src="{% static '/img/salud_Madrid.jpg'%}" class="card-img-top" alt="..." />
+            <div class="card-body">
+                <h5 class="card-title">{{hospitals.direccion_ubicacion}}</h5>
+                <p class="card-text">{{hospitals.codigo_postal}}</p>
+                <div class = "d-flex justify-content-center">
+                        <button type="submit" class="btn btn-success" >Buscar Hospitales más cercano</button>
+                        <select name="range_hosp">
+                            <option value="1">1</option> 
+                            <option value="2">2</option> 
+                            <option value="3">3</option>
+                            <option value="4">4</option> 
+                            <option value="5">5</option> 
+                            <option value="6">6</option> 
+                            <option value="7">7</option> 
+                            <option value="8">8</option> 
+                            <option value="9">9</option> 
+                            <option value="10">10</option> 
+                        </select>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</main>    
+{% endblock body %}

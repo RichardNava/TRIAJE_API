@@ -1,0 +1,32 @@
+{% extends 'triaje/index.html' %}
+{%load static%}
+{% block import_js %}
+<script src="{% static '/js/dea_finder.js' %}"></script>
+{% endblock import_js %}
+{% block titulo %}
+Triaje App - Listado DEA´s
+{% endblock titulo %}
+{% block body %}
+<form class="form-signin" action="{% url 'dea_details' %}" method="post" id="id_detail">
+    {% csrf_token %}
+    <input type="text" name="lat" id="lat" style="display: none;"/>
+    <input type="text" name="lng" id="lng" style="display: none;"/>
+    <main class="container" id="main">
+        <ul class = "list-group">
+            {% for dea in deas%}
+            <li class="list-group-item list-group-item-success">
+                <strong>Código:</strong> {{dea.codigo_dea}} 
+                <strong>Nombre:</strong> {{dea.direccion_ubicacion}} 
+                <div class = "d-flex justify-content-end">
+                    <button class="btn btn-success" type="submit" name ="codigo_dea" value="{{ dea.codigo_dea }}">Ver detalle</button>
+                </div>       
+                <strong>Dirección:</strong> {{dea.direccion_via_nombre}} {{dea.direccion_portal_numero}} 
+                {%if dea.horario_acceso != ""%} 
+                <strong>Horario:</strong> {{dea.horario_acceso}}
+                {%endif%}
+            </li>
+            {%endfor%}
+            </form>
+        </ul>
+</main>
+{% endblock body %}

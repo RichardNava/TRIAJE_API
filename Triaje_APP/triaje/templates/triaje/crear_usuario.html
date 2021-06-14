@@ -1,0 +1,22 @@
+{% extends 'triaje/index.html' %}
+{%load static%}
+{% block titulo %}
+Triaje App - Crear Usuario
+{% endblock titulo %}
+{% block body %}
+<div class="card">
+    <div class="card-header">
+        <strong class="card-title">Listado de Usuarios</strong>
+    </div>
+    <div class="card-body">
+        <form method="POST">
+            <div class="card-footer">
+            {% csrf_token %}
+            {{ form.as_p }}
+                <a href="{% url 'login' %}" class="btn btn-danger"> Cancelar </a>
+                <button type="submit" class="btn btn-success">Registrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock body %}

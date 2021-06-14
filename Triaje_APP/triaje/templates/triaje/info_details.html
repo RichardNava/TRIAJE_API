@@ -1,0 +1,47 @@
+{% extends 'triaje/index.html' %}
+{%load static%}
+{% block titulo %}
+Triaje App - Detalle Informe
+{% endblock titulo %}
+{% block body %}
+<form class="form-signin" action="{% url 'info_list' %}" method="post">
+    {% csrf_token %}
+    <div class="container">
+        <div class="col-12">
+            <div class="row">
+                <table class='table table-dark'>
+                    <tr>
+                        <th scope='col'>ID INFORME</th>
+                        <th scope='col'>PATOLOGIAS</th>
+                        <th scope='col'>SINTOMAS</th>
+                        <th scope='col'>FECHA</th>
+                    </tr>
+                    {% for det in details %}
+                    <tr>
+                        <td class="table-success">{{id_informe}}</td>
+                        {% if det.fk_patologia != None %}
+                        <td class="table-success">{{det.fk_patologia}}</td>
+                        {%else%}
+                        <td class="table-success"></td>
+                        {% endif%}
+                        {% if det.fk_sintoma != None %}
+                        <td class="table-success">{{det.fk_sintoma}}</td> 
+                        {%else%}
+                        <td class="table-success"></td>
+                        {% endif%}
+                        <td class="table-success">{{det.fk_informe.fecha}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>  
+                <table class='table table-dark'>
+                        <td><strong>RESULTADO=> </strong>{{resultado}}</td>
+                        <div class = "d-flex justify-content-end">
+                            <td><button class="btn btn-success" type="submit" name ="id_info" value="{{id_informe}}">Volver al listado</button></td>
+                        </div>    
+                    </tr>
+                </table>         
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock body %}

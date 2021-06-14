@@ -1,0 +1,79 @@
+{% extends 'triaje/index.html' %}
+{%load static%}
+{% block titulo %}
+Triaje App - Patologias
+{% endblock titulo %}
+{% block body %}
+    <form class="form-signin" action="{% url 'patologias' %}" method="post" id="id_pat">{% csrf_token %}
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <table class="table table-striped table-dark">
+                <tr>
+                    <th>USUARIO</th>
+                    <th>EDAD</th>
+                    <th>PESO</th>
+                    <th>ALTURA</th>
+                </tr>
+                <tr>
+                    <td>{{usuario.username}}</td>
+                    <td>{{usuario.calcular_edad}}</td>
+                    <td>{{usuario.peso}}</td>
+                    <td>{{usuario.altura}}</td>
+                </tr>
+            </table>
+        </div>
+    <h1 >PATOLOGIAS</h1>
+    <div class="container">
+        <div class="col-2">
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-4">
+                        <table class="table table-hover table-dark">
+                            <tr>
+                                <th scope='col'>NOMBRE</th>
+                            </tr>
+                        {% for patologia in patologias1 %}
+                            <tr>
+                                <td class="bg-success"><input type="checkbox" value="{{ patologia.id }}" name= "{{ patologia.nombre }}" > {{patologia.nombre}}</td>
+                        {% endfor %}
+                        </tr>
+                        </table>
+                    </div>
+                    <div class="col-4">
+                        <table class='table table-hover table-dark '>
+                            <tr>
+                                <th scope='col'>NOMBRE</th>
+                            </tr>
+                        {% for patologia in patologias2 %}
+                            <tr>
+                                <td class="bg-success"><input type="checkbox" value="{{ patologia.id }}" name= "{{ patologia.nombre }}" > {{patologia.nombre}}</td>
+                            </tr>
+                        {% endfor %}
+                        </table>
+                    </div>              
+                    <div class="col-4">
+                        <table class='table table-hover table-dark'>
+                            <tr>
+                                <th scope='col'>NOMBRE</th>
+                            </tr>
+                        {% for patologia in patologias3 %}
+                            <tr>
+                                <td class="bg-success"><input type="checkbox" value="{{ patologia.id }}" name= "{{ patologia.nombre }}" > {{patologia.nombre}}</td>
+                        {% endfor %}
+                        </tr>
+                        </table>                      
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <br>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button class="btn btn-success" type="submit" name ="username" value="{{ usuario.username }}">Continuar</button>
+    </div>
+
+</table>
+{% endblock body %}

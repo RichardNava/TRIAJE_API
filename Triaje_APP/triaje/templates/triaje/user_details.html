@@ -1,0 +1,45 @@
+{% extends 'triaje/index.html' %}
+{%load static%}
+{% block titulo %}
+Triaje App - Detalle Informe
+{% endblock titulo %}
+{% block body %}
+<form class="form-signin" action="{% url 'user_list' %}" method="post">
+    {% csrf_token %}
+    <div class="container">
+        <div class="col-12">
+            <div class="row">
+                <table class='table table-dark'>
+                    <tr>
+                        <th scope='col'>ID USUARIO</th>
+                        <th scope='col'>NOMBRE</th>
+                        <th scope='col'>EMAIL</th>
+                        <th scope='col'>FECHA DE NACIMIENTO</th>
+                        <th scope='col'>PESO</th>
+                        <th scope='col'>ALTURA</th>
+                        <th scope='col'>ROL</th>
+                    </tr>
+                    <tr>
+                        <td class="table-success">{{usuario.id}}</td>
+                        <td class="table-success">{{usuario.username}}</td>
+                        <td class="table-success">{{usuario.email}}</td> 
+                        <td class="table-success">{{usuario.fecha_nacimiento}}</td>
+                        <td class="table-success">{{usuario.peso}} Kg</td>
+                        <td class="table-success">{{usuario.altura}} cm</td>
+                        {%if usuario.usuario_administrador%}
+                        <td class="table-success">Administrador</td>
+                        {%else%}
+                        <td class="table-success">Usuario</td>
+                        {%endif%}
+                    </tr>
+                </table>  
+                <table class='table table-dark'>
+                        <div class = "d-flex justify-content-end">
+                            <td><button class="btn btn-success" type="submit" name ="user_id" value="{{usuario.id}}">Volver al listado</button></td>
+                        </div>    
+                </table>         
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock body %}

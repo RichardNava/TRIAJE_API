@@ -1,0 +1,37 @@
+{% extends 'triaje/index.html' %}
+{%load static%}
+{% block titulo %}
+Triaje App - Listado Usuarios
+{% endblock titulo %}
+{% block body %}
+<form class="form-signin" action="{% url 'user_details' %}" method="post">
+    {% csrf_token %}
+    <main class="container" id="main">
+        <ul class = "list-group">
+            {%if user_list%}
+            {% for user in user_list%}
+            <li class="list-group-item list-group-item-success">
+                <strong>ID USUARIO:</strong> {{user.id}}
+                <strong>NOMBRE:</strong> {{user.username}}
+                <strong>EMAIL:</strong> {{user.email}}
+                <div class = "d-flex justify-content-end">
+                    <button class="btn btn-success" type="submit" name ="user_id" value="{{user.id}}">Ver detalle</button>
+                </div>
+                <div class = "d-flex justify-content-left">
+                    <a href= "{% url 'user_delete' user.id  %}" class="btn btn-danger">Eliminar</a>
+                </div>    
+            </li>
+            {%endfor%}
+            </form>
+        </ul>
+            <div class = "d-grid gap-2 col-12 mx-auto">
+                <a class="btn btn-success" href= "{% url 'index'  %}">Volver a Menu Principal</a>
+            </div>    
+        {%else%}
+        <h2>{{user.username}}, no tiene usuarios por mostrar.</h2>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <a class="btn btn-success" href="{% url 'index' %}">Volver a Menu Principal</a>
+        </div>
+        {%endif%}
+    </main>
+{% endblock body %}

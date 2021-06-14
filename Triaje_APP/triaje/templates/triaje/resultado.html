@@ -1,0 +1,22 @@
+{% extends 'triaje/index.html' %}
+{%load static%}
+{% block titulo %}
+Triaje App - Resultado
+{% endblock titulo %}
+{% block body %}
+    <div class = "d-flex justify-content-center">
+        <form action="{% url 'index' %}">{% csrf_token %}
+            <div class="card" style="width: 18rem">
+                <img src="{% static '/img/triajeAppLogo4.jpg'%}" class="card-img-top" alt="..." />
+                <div class="card-body">
+                    <h5 class="card-title">RESULTADO</h5>
+                    <p class="card-text">{{resultado}}</p>
+                    <div class = "d-flex justify-content-center">
+                        <button type="submit" class="btn btn-success">Volver a Inicio</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock body %}
